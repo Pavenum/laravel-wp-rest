@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Pavenum\LaravelWpRest\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LaravelWpRestCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-wp-rest';
 
     public $description = 'My command';
 
