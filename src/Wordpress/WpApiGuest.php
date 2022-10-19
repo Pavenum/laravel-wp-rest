@@ -20,15 +20,15 @@ class WpApiGuest extends WpApiBaseRequest
         if ($response->header('Link')) {
             $links = Header::parse($response->header('Link'));
             foreach ($links as $link) {
-                if (isset($link["rel"]) && $link["rel"] === "https://api.w.org/") {
+                if (isset($link['rel']) && $link['rel'] === 'https://api.w.org/') {
                     return trim($link[0], '<>');
                 }
             }
         }
 
-        $default_base_api_url = rtrim($website_home_url, '/') . '/wp-json';
+        $default_base_api_url = rtrim($website_home_url, '/').'/wp-json';
 
-        foreach(['HEAD', 'GET'] as $method) {
+        foreach (['HEAD', 'GET'] as $method) {
             $check = $this->makeRequest($default_base_api_url, $method);
 
             if ($check->successful()) {
@@ -48,7 +48,7 @@ class WpApiGuest extends WpApiBaseRequest
         $response = $this->makeRequest(endpoint:  $base_api_url);
         $app_passwords = object_get($response, 'authentication.application-passwords.endpoints.authorization', false);
 
-        if (!$app_passwords) {
+        if (! $app_passwords) {
             throw new Exception('Application Passwords not enabled on this website', 400);
         }
 
@@ -64,8 +64,8 @@ class WpApiGuest extends WpApiBaseRequest
         $scheme_success_url = parse_url($success_url, PHP_URL_SCHEME);
         $scheme_reject_url = parse_url($reject_url, PHP_URL_SCHEME);
 
-        throw_unless($scheme_success_url === 'https', Exception::class, "Success url have to be secured (https)", 400);
-        throw_unless($scheme_reject_url === 'https', Exception::class, "Reject url have to be secured (https)", 400);
+        throw_unless($scheme_success_url === 'https', Exception::class, 'Success url have to be secured (https)', 400);
+        throw_unless($scheme_reject_url === 'https', Exception::class, 'Reject url have to be secured (https)', 400);
 
         $query = http_build_query([
             'app_name' => $app_name,
@@ -76,6 +76,6 @@ class WpApiGuest extends WpApiBaseRequest
 
         $auth_app_url = $this->findBaseAppPasswordsAuthUrl($base_api_url);
 
-        return $auth_app_url . '?' . $query;
+        return $auth_app_url.'?'.$query;
     }
 }

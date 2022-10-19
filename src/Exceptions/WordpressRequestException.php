@@ -8,9 +8,10 @@ use Throwable;
 class WordpressRequestException extends Exception
 {
     protected ?string $url;
+
     protected ?string $wp_code;
 
-    public function __construct(string $message = "", int $code = 0, ?string $wp_code = null, ?string $url = null, ?Throwable $previous = null)
+    public function __construct(string $message = '', int $code = 0, ?string $wp_code = null, ?string $url = null, ?Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
         $this->url = $url;

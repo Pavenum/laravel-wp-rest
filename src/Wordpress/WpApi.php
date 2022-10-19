@@ -16,12 +16,14 @@ class WpApi extends WpApiBaseRequest
     public function setBaseApiUrl(string $base_api_url): self
     {
         $this->http = $this->http->baseUrl($base_api_url);
+
         return $this;
     }
 
     public function setAuth(string $user_login, string $user_password): self
     {
         $this->http = $this->http->withBasicAuth($user_login, $user_password);
+
         return $this;
     }
 
@@ -67,7 +69,7 @@ class WpApi extends WpApiBaseRequest
             'query' => [
                 'status' => $status,
                 'search' => $search,
-            ]
+            ],
         ];
 
         return $this->makeRequest(endpoint: $endpoint, params: $params);

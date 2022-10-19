@@ -7,8 +7,11 @@ use Pavenum\LaravelWpRest\Wordpress\WpApiBaseRequest;
 abstract class WpModelAbstract extends WpApiBaseRequest
 {
     protected string $endpoint;
+
     protected int $page = 1;
+
     protected int $count = 10;
+
     protected array $params = [];
 
     public function __construct(?string $base_api_url = null)
@@ -22,30 +25,34 @@ abstract class WpModelAbstract extends WpApiBaseRequest
 
     protected function endpointModel(int $id): string
     {
-        return rtrim($this->endpoint, '/') . '/' . $id;
+        return rtrim($this->endpoint, '/').'/'.$id;
     }
 
     public function withAuth(string $user_login, string $user_password): self
     {
         $this->http = $this->http->withBasicAuth($user_login, $user_password);
+
         return $this;
     }
 
     public function withBaseApiUrl(string $base_api_url): self
     {
         $this->http = $this->http->baseUrl($base_api_url);
+
         return $this;
     }
 
     public function count(int $count)
     {
         $this->count = $count;
+
         return $this;
     }
 
     public function page(int $page)
     {
         $this->page = $page;
+
         return $this;
     }
 

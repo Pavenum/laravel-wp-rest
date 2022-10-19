@@ -22,6 +22,7 @@ class WpApiBaseRequest
     public function setUserAgent(string $ua): self
     {
         $this->user_agent = $ua;
+
         return $this;
     }
 
@@ -39,8 +40,7 @@ class WpApiBaseRequest
                     $response->json('message'),
                     $response->status()
                 );
-            })
-        ;
+            });
 
         $callerFunc = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 2)[1]['function'];
         if (str_contains($callerFunc, 'find')) {

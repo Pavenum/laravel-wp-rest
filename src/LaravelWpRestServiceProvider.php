@@ -2,11 +2,9 @@
 
 namespace Pavenum\LaravelWpRest;
 
-use Illuminate\Support\Facades\Http;
-use Pavenum\LaravelWpRest\Facades\WpGuest;
+use Pavenum\LaravelWpRest\Commands\LaravelWpRestCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Pavenum\LaravelWpRest\Commands\LaravelWpRestCommand;
 
 class LaravelWpRestServiceProvider extends PackageServiceProvider
 {
@@ -23,6 +21,6 @@ class LaravelWpRestServiceProvider extends PackageServiceProvider
 //            ->hasViews()
 //            ->hasMigration('create_laravel-wp-rest_table')
 //            ->hasCommand(LaravelWpRestCommand::class)
-        ;
+;
     }
 }
